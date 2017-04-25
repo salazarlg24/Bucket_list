@@ -1,0 +1,51 @@
+<div ng-controller="UsersController">
+	<a style="display: inline-block;margin-left: 500px" href="#!/dashboard">Home</a>
+	<input style="display: inline-block;" type="submit" value="Logout" ng-click="logout()">
+	<hr>
+	<h2 style="display: inline-block;">Welcome {{user}}!</h2> 
+</div>
+
+<div ng-controller="DashboardController">
+
+<div ng-repeat="item in messages">
+	<h2 style="color: red">{{item}}</h2>
+</div>
+
+	<form>
+		<p>
+			<input type="text" placeholder="Title" ng-model="newList.title"> 
+			<input type="text" placeholder="Description" ng-model="newList.description">
+			<select ng-model="newList.other">
+				<option ng-repeat="item in all_users" ng-if="item.name != user">{{item.name}}</option>
+			</select>
+			<button ng-click="create()">Add to List</button>
+		</p>
+	</form>
+
+	<br>
+	<p>Before I die I want to...</p>
+	<div ng-repeat="item in lists | orderBy: '-createdAt'">
+		<p  ng-if="item._user.name == user || item.other == user">
+		<input type="checkbox" ng-click="check(item._id)" checked ng-show="{{item.check}}">
+		<input type="checkbox" ng-click="check(item._id)"  ng-show="!{{item.check}}">
+		 {{item._user.name}} | {{item.title}} - {{item.description}}... - {{item.createdAt | date}}</p>
+	</div>
+
+	<br>
+
+	<div>
+		<p>List of other Users (Click to view Profile):</p>
+		<div ng-repeat = "item in all_users">
+			<a ng-if="item.name != user" href="#!/user/{{item._id}}">{{item.name}}</a>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+

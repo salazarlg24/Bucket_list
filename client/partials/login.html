@@ -1,0 +1,12 @@
+<div ng-controller='UsersController'>
+<div ng-repeat="item in messages">
+	<h2 style="color: red">{{item}}</h2>
+</div>
+	<h1>Bucket Lists</h1>
+	<p>Name Please:</p>
+	<p>
+	<form>
+	<input type="text" ng-model="user.name" required>
+	 <input type="submit" value="Enter" ng-click="login()">
+	 </form></p>
+</div>

@@ -1,0 +1,28 @@
+<div ng-controller="UsersController">
+	<a style="display: inline-block;margin-left: 500px" href="#!/dashboard">Home</a>
+	<input style="display: inline-block;" type="submit" value="Logout" ng-click="logout()">
+	<hr>
+</div>
+
+<div ng-controller="ListsController">
+	<h2 style="display: inline-block;">{{user.name}}'s Bucket List</h2> 
+
+	<h3>Done</h3>
+		<div ng-repeat="item in list | orderBy: '-createdAt'">
+			<p ng-if="item.check == true && item._user.name == user.name || item.check == true && item.other == user.name">
+			<input type="checkbox" disabled checked ng-show="{{item.check}}">
+			<input type="checkbox" disabled ng-show="!{{item.check}}">
+			{{item._user.name}} | {{item.title}} - {{item.description}}... - {{item.createdAt | date}}</p>
+		</div>
+
+		<br>
+
+	<h3>Pending</h3>
+		<div ng-repeat="item in list | orderBy: '-createdAt'" >
+			<p ng-if=" item.check == false && item._user.name == user.name || item.check == false && item.other == user.name">
+			<input type="checkbox" disabled checked ng-show="{{item.check}}">
+			<input type="checkbox" disabled ng-show="!{{item.check}}">
+			 {{item._user.name}} | {{item.title}} - {{item.description}}... - {{item.createdAt | date}}</p>
+		</div>
+
+</div>
